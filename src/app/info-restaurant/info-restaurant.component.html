@@ -1,0 +1,22 @@
+
+<img width="200" height="200" src="{{restaurantDetail.image_url}}" />
+<h1>{{restaurantDetail.name}}</h1>
+<h3>{{restaurantDetail.location.address1}}, {{restaurantDetail.location.city}} - {{restaurantDetail.location.state}}, {{restaurantDetail.location.zip_code}}</h3>
+<google-map  height="300px"
+width="300px"
+[zoom]="zoom"
+[center]="center"
+[options]="options">
+ <map-marker
+    *ngFor="let marker of markers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+  >
+  </map-marker></google-map>
+
+  <app-reviews-restaurant [restaurantId]="restaurantDetail.id">
+
+  </app-reviews-restaurant>
+

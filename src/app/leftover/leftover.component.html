@@ -1,0 +1,28 @@
+<div *ngIf="!isEmpty(itemList)">
+    <table class="table table-sm table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Restaurant</th>
+                <th scope="col">Food Type</th>
+                <th scope="col">Address</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Food Expiry</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+    <tbody>
+        <tbody>
+            <tr *ngFor="let item of itemList">
+                <td>{{item.restaurantName}}</td> 
+                <td>{{item.foodType}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.foodType}}</td>
+                <td>{{item.useBy}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary"><span class="cui-contrast"></span> Interested</button>
+                </td>
+            </tr>
+    </tbody>
+</table>
+</div>
+
