@@ -21,7 +21,7 @@ export class InfoRestaurantComponent implements OnInit {
     maxZoom: 15,
     minZoom: 8,
   }
-  private restaurantDetail;
+  public restaurantDetail;
   constructor() {}
 geocoder:any;
   ngOnInit() {

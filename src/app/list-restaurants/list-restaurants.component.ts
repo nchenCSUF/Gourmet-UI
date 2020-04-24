@@ -27,8 +27,8 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbRatingConfig]
 })
 export class ListRestaurantsComponent implements OnInit {
-  private response: any;
-  private searchText: String = "";
+  public response: any;
+  public searchText: String = "";
   constructor(private rListService: ListRestaurantsService, private router: Router, config: NgbRatingConfig) { 
     config.max = 5;
     config.readonly = true;

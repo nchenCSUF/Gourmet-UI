@@ -9,7 +9,7 @@ import { LeftoverService } from './leftover.service';
   styleUrls: ['./leftover.component.css']
 })
 export class LeftoverComponent implements OnInit {
-  private itemList: leftOverItem[];
+  public itemList: leftOverItem[];
   constructor(private rListService: LeftoverService) { }
 
   ngOnInit() {
