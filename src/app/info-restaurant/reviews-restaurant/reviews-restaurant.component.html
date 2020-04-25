@@ -1,16 +1,24 @@
 
 <div class="card-body">
-    <div class="input-group mb-3">
-        <input type="text" [(ngModel)]="reviewNew" class="form-control" placeholder="Write Review" aria-label="Input group example" aria-describedby="btnGroupAddon">
-        <div class="input-group-prepend">
-            <ng-template #n let-fill="fill">
-                <span class="star" [class.full]="fill === 100">
-                  <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-                </span>
-              </ng-template>
-            <ngb-rating [(rate)]="starNew" [(ngModel)]="starNew" [starTemplate]="n" [readonly]="false"></ngb-rating>
-            <div class="input-group-text" id="btnGroupAddon" style="cursor:pointer" (click)="addReview()"><i class="fa fa-plus"></i> </div>
-        </div>
+    <div class="input-group">
+        <!-- <div class="input-group-prepend"> -->
+                <div class="col-1">
+                    <ng-template #n let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                        </span>
+                      </ng-template>
+                    <ngb-rating [(rate)]="starNew" [(ngModel)]="starNew" [starTemplate]="n" [readonly]="false" ></ngb-rating>
+                </div>
+                <div class="col11">&nbsp;</div>
+                <div class="col-9">
+                    <div class="input-group-prepend">
+                        <input type="text" [(ngModel)]="reviewNew" class="form-control ml-5" placeholder="Write Review" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                        <div class="input-group-text" id="btnGroupAddon" style="cursor:pointer" (click)="addReview()"><i class="fa fa-plus"></i> </div>
+                    </div>
+                </div>
+
+        <!-- </div> -->
     </div>
     <div *ngIf="!isEmpty(reviewsList)">
     <div *ngFor="let item of reviewsList.reviews">

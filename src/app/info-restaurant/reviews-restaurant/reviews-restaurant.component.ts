@@ -8,7 +8,7 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
   .star {
     position: relative;
     display: inline-block;
-    font-size: 1rem;
+    font-size: 2rem;
     color: #d3d3d3;
   }
   .full {
