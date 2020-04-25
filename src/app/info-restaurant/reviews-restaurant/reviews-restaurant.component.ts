@@ -25,12 +25,32 @@ export class ReviewsRestaurantComponent implements OnInit {
   @Input()
     restaurantId: string;
     reviewsList: any;
+    reviewNew: String;
+    starNew: any = 0;
+    newRate: any;
   constructor(private reviewService: ReviewsRestaurantService, config:NgbRatingConfig ) {
     config.max = 5;
     config.readonly = true;
    }
 
   ngOnInit() {
+    this.getReviews();
+    
+  }
+
+  addReview() {
+    this.reviewsList.reviews.unshift(
+      {
+        time_created: "Today",
+        text: this.reviewNew,
+        rating: this.starNew,
+        user: {
+          name: "Anonymous"
+        }
+      }
+    )
+    this.starNew = 0;
+    this.reviewNew = "";
   }
 
   getReviews() {

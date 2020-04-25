@@ -4,6 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false,
-  serverEndpoint: 'https://gourmetbackend.azurewebsites.net'
+  production: true,
+  serverEndpoint: 'localhost:3008'
 };

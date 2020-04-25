@@ -1,12 +1,21 @@
-<p>reviews-restaurant works!</p>
-<button (click)="getReviews()">Check Reviews</button>
 
 <div class="card-body">
-
-<div *ngIf="!isEmpty(reviewsList)">
+    <div class="input-group mb-3">
+        <input type="text" [(ngModel)]="reviewNew" class="form-control" placeholder="Write Review" aria-label="Input group example" aria-describedby="btnGroupAddon">
+        <div class="input-group-prepend">
+            <ng-template #n let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+              </ng-template>
+            <ngb-rating [(rate)]="starNew" [(ngModel)]="starNew" [starTemplate]="n" [readonly]="false"></ngb-rating>
+            <div class="input-group-text" id="btnGroupAddon" style="cursor:pointer" (click)="addReview()"><i class="fa fa-plus"></i> </div>
+        </div>
+    </div>
+    <div *ngIf="!isEmpty(reviewsList)">
     <div *ngFor="let item of reviewsList.reviews">
         <div class="row">
-            <div class="col-9 alert alert-primary" role="alert">
+            <div class="col-12 alert alert-primary" role="alert">
                 <div class="h5 text-primary pt-3">{{item.user.name}}</div>
                 {{item.text}}
                 <ng-template #t let-fill="fill">
@@ -14,12 +23,10 @@
                       <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                     </span>
                   </ng-template>
-                  
-                  <ngb-rating [(rate)]="item.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
-                  <div class="text-muted">{{item.time_created}}</div>
-            </div>
-            <div class="col-3">
-                <img width="100px" height="100px" [src]="item.user.image_url" />
+                  <div class = "row">
+                      <div class="col-9"><ngb-rating [(rate)]="item.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></div>
+                      <div class="col-3" style="float: right;"> <div class="text-muted">{{item.time_created}}</div></div>
+                  </div>                 
             </div>
         </div>
     </div>
