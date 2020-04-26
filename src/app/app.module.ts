@@ -8,6 +8,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FormsModule } from '@angular/forms';
 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -44,13 +45,13 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import {NgbPaginationModule, NgbAlertModule, NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule, NgbRatingModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import { GoogleMapsModule } from '@angular/google-maps'
 
 import { ChartsModule } from 'ng2-charts';
-import { LeftoverComponent } from './leftover/leftover.component';
+import { LeftoverComponent, NgbdModalContent } from './leftover/leftover.component';
 import { LightboxModule } from 'ngx-lightbox';
-import { InfoRestaurantComponent } from './info-restaurant/info-restaurant.component';
+import { InfoRestaurantComponent} from './info-restaurant/info-restaurant.component';
 import { ReviewsRestaurantComponent } from './info-restaurant/reviews-restaurant/reviews-restaurant.component';
 @NgModule({
   imports: [
@@ -71,17 +72,20 @@ import { ReviewsRestaurantComponent } from './info-restaurant/reviews-restaurant
     HttpClientModule,
     NgbRatingModule,
     GoogleMapsModule,
-    LightboxModule
+    LightboxModule,
+    NgbModalModule
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
     ListRestaurantsComponent,
+    NgbdModalContent,
     LeftoverComponent,
     InfoRestaurantComponent,
     ReviewsRestaurantComponent
   ],
+  entryComponents:[NgbdModalContent],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy

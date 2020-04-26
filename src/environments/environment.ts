@@ -5,5 +5,5 @@
 
 export const environment = {
   production: true,
-  serverEndpoint: 'https://gourmetbackend.azurewebsites.net' //'localhost:3000'
+  serverEndpoint: 'http://localhost:3000' //'https://gourmetbackend.azurewebsites.net' //
 };

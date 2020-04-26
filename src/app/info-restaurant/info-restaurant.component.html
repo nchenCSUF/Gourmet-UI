@@ -15,6 +15,24 @@ width="300px"
     [options]="marker.options"
   >
   </map-marker></google-map>
+  
+
+  <span *ngFor="let image of _album; let i=index">
+    <img width="100px" height="130px" [src]="image.thumb" (click)="open(i)" />
+  </span> 
+<div class="row">
+  <div class="col-1">Add to Favorites</div>
+   
+<div class="col-11">
+  <ng-template #f let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+    </span>
+  </ng-template>
+  
+  <ngb-rating [(rate)]="favorite" [starTemplate]="f" [readonly]="false" [max]="1" (click)="addToFav()"></ngb-rating></div>
+</div>
+  
 
   <app-reviews-restaurant [restaurantId]="restaurantDetail.id">
 

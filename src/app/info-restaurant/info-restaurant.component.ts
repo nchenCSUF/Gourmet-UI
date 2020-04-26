@@ -1,14 +1,34 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
-declare var google: any;
+import { Lightbox } from 'ngx-lightbox';
+
 @Component({
   selector: 'app-info-restaurant',
   templateUrl: './info-restaurant.component.html',
-  styleUrls: ['./info-restaurant.component.css']
+  styleUrls: ['./info-restaurant.component.css'],
+  styles: [`
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: red;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;
+  }`]
 })
 export class InfoRestaurantComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
+
+  _album:any = [];
+  favorite: any = 0;;
   markers = []
   infoContent = ''
   zoom = 12
@@ -22,9 +42,35 @@ export class InfoRestaurantComponent implements OnInit {
     minZoom: 8,
   }
   public restaurantDetail;
-  constructor() {}
+  constructor(private _lightbox: Lightbox) {
+    
+  }
+
+  open(index: number): void {
+    // open lightbox
+    this._lightbox.open(this._album, index);
+  }
+ 
+  close(): void {
+    // close lightbox programmatically
+    this._lightbox.close();
+  }
 geocoder:any;
   ngOnInit() {
+    for (var i= 1; i <= 3; i++) {
+      
+      const src = 'assets/img/img/img' + i + '.jpg';
+      const caption = 'Image ' + i + ' picture' + i;
+      const thumb = 'assets/img/img/img' + i + '.jpg';
+      const album = {
+         src: src,
+         caption: caption,
+         thumb: thumb
+      };
+      this._album.push(album);
+    }
+    console.log(this._album)
+
     navigator.geolocation.getCurrentPosition(position => {
       this.center = {
         lat: this.restaurantDetail.coordinates.latitude,
@@ -38,24 +84,13 @@ geocoder:any;
 
   console.log(JSON.parse(window.localStorage.getItem('data')));
     this.restaurantDetail = JSON.parse(window.localStorage.getItem('data')).details;
-    // this.geocoder.geocode( { 'address': "New york city"}, function(results, status) {
-
-    //   if (status == google.maps.GeocoderStatus.OK) {
-    //     console.log(results)
-    //       var latitude = results[0].geometry.location.lat();
-    //       var longitude = results[0].geometry.location.lng();
-    //       this.center = {
-    //         lat: latitude,
-    //         lng: longitude,
-    //       }
-    //       this.addMarker();
-    //       } 
-    //   }); 
-      
+     
 }
     
     
+addToFav (){
   
+}
   
   
 
