@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
 import { Lightbox } from 'ngx-lightbox';
-
+declare const google: any;
 @Component({
   selector: 'app-info-restaurant',
   templateUrl: './info-restaurant.component.html',
@@ -89,7 +89,7 @@ geocoder:any;
     
     
 addToFav (){
-  
+
 }
   
   
