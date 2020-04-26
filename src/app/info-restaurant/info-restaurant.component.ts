@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
-
+import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
+declare var google: any;
 @Component({
   selector: 'app-info-restaurant',
   templateUrl: './info-restaurant.component.html',
