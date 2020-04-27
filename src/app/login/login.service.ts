@@ -21,4 +21,7 @@ export class LoginService {
     // api call to get the services
     return this.httpClient.post<any>(environment.serverEndpoint + '/api/signin', {data:tokenDetails}, httpOptions);
   }
+  getUseDetails(email):Observable<any> {
+    return this.httpClient.get(environment.serverEndpoint + '/api/getUser?id=' +  email);
+  }
 }

@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { ListRestaurantsComponent} from './list-restaurants/list-restaurants.component';
 import { LeftoverComponent } from './leftover/leftover.component'
 import { InfoRestaurantComponent } from './info-restaurant/info-restaurant.component'
+import { FavoriteComponent } from './favorite/favorite.component';
+import { AddleftoverComponent } from './leftover/addleftover/addleftover.component';
 export const routes: Routes = [
   {
     path: '',
@@ -39,6 +41,15 @@ export const routes: Routes = [
       {
         path: 'left-over-food',
         component: LeftoverComponent
+      },
+      {
+        path: 'fav',
+        component: FavoriteComponent
+      },
+      {
+        path: 'add-left-over',
+        component: AddleftoverComponent
+
       }
     ]}
 ];

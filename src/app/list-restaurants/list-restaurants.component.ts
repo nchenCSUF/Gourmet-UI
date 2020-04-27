@@ -48,13 +48,28 @@ export class ListRestaurantsComponent implements OnInit {
   searchRestaurants() {
     this.response = [];
     this.rListService.getApiRestaurantList(this.latitude, this.longitude, this.searchText).subscribe((res)=>{
-      this.response = res.msg;
+      let temp = res.msg;
+      temp.businesses.sort((a,b) => Number(a['distance'] - b['distance']));
+      this.response = temp;
     })
   }
 
+  sortByRating() {
+    let temp = this.response
+    temp.businesses.sort((a,b) => 
+      Number(b["rating"] - a["rating"])
+    )
+    console.log(temp)
+    this.response = Object.assign({}, temp);
+  }
+
+  calculateDistance(distance) {
+    return (parseInt(distance) / 1000).toFixed(1) + " miles";
+  }
   
   gotoRestaurantInfo(restaurant) {
     console.log("**", restaurant);
+    window.localStorage.setItem( "restaurants", JSON.stringify({"details": this.response}));
     window.localStorage.setItem('data', JSON.stringify({"details":restaurant}));
     this.router.navigate(['/restaurant-info']);
   }

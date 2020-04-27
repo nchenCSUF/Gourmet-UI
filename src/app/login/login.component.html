@@ -6,47 +6,34 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <form>
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Username" autocomplete="username" required>
+                    <input type="email" class="form-control" placeholder="Username" [(ngModel)]="username" required>
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" required>
+                    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" required>
                   </div>
                   <div class="row mb-3">
                     <div class="col-6 ">
-                      <button type="button" class="btn btn-primary px-4">Login</button>
+                      <button type="button" class="btn btn-primary px-4" (click)="login()">Login</button>
                     </div>
                     <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0">Forgot password?</button>
                     </div>
                   </div>
-                </form>
                 <div class="card">
                   <div class="card-body p-0 clearfix" style="cursor: pointer" (click)="signinWithGoogle()">
                     <i class="fa fa-google-plus bg-primary p-4 px-5 font-2xl float-right"></i>
                     <div class="h5 text-primary ml-3 pt-3" >or sign in with</div>
                   </div>
                 </div>
-                <!-- <div class="brand-card">
-                  <div class="brand-card-body">
-                    <div>
-                      <div class="text-muted">or Sign in with</div>
-                    </div>
-                  </div>
-                  <div class="brand-card-header bg-google-plus">
-                    <i class="fa fa-google-plus btn"></i>
-                  </div>
-                </div> -->
-                
               </div>
             </div>
           </div>

@@ -1,0 +1,10 @@
+.table-dark{
+    background-color: #253f5ab5
+}
+
+.main-res-list{
+    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/asian-food-background-tea-and-chopsticks-on-dark-background-natalia-klenova.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 1000px;
+}

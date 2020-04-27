@@ -4,7 +4,7 @@
             <tr>
                 <th scope="col">Restaurant</th>
                 <th scope="col">Food Type</th>
-                <th scope="col">Address</th>
+                <th scope="col">Comments</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Food Expiry</th>
                 <th scope="col"></th>
@@ -15,7 +15,7 @@
             <tr *ngFor="let item of itemList">
                 <td>{{item.restaurantName}}</td> 
                 <td>{{item.foodType}}</td>
-                <td>{{item.address}}</td>
+                <td>{{item.comments}}</td>
                 <td>{{item.serves}}</td>
                 <td>{{item.useBy}}</td>
                 <td>

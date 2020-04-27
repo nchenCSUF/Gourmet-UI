@@ -1,0 +1,55 @@
+
+<div class="card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Food Type</th>
+                <th>Serves</th>
+                <th>Expires</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of leftOverDetails">
+                <td>{{item.foodType}}</td>
+                <td>{{item.serves}} </td>
+                <td> 
+                    {{item.useBy}}
+               </td>
+                <td>
+                    <label class="switch switch-primary">
+                        <input type="checkbox" class="switch-input" checked (change)="deleteItem(item.id, item.useBy)">
+                        <span class="switch-slider"></span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+Thank you for your contribution!
+
+<div>
+    Add Food details
+</div>
+<div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="radio" name="options" id="veg" autocomplete="off" checked> Vegetarian
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="vegan" autocomplete="off"> Vegan
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="nonveg" autocomplete="off"> Non Vegetarian
+    </label>
+  </div>
+
+  Qty: <input type="text" [(ngModel)]="qty" />
+  expires on <dp-date-picker [(ngModel)]="selectedDate" [config]="datePickerConfig"></dp-date-picker>  {{selectedDate}}
+  comments: <input [(ngModel)]="comments" type="text" />
+  <button (click)="addFoodItem()">Add Food item</button>
+
+

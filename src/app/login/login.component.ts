@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   templateUrl: 'login.component.html'
 })
 export class LoginComponent { 
+  username: string;
+  password: string;
   constructor(private socialAuthService: AuthService, 
     private signinService: LoginService,private Router: Router) { }
 
@@ -15,11 +17,22 @@ export class LoginComponent {
 
     this.socialAuthService.signIn(socialPlatformProvider)
       .then((userData) => {
-        console.log(userData, "amisha")
+        
         //on success
         //this will return user data from google. What you need is a user token which you will send it to the server
-        this.sendToRestApiMethod(userData.idToken);
+        
+        this.signinService.getUseDetails(userData.email).subscribe((res)=>{
+          window.localStorage.setItem( "user", JSON.stringify({"details": res.msg[0]}));
+          this.sendToRestApiMethod(userData.idToken);
+        })
+        
       });
+  }
+  login() {
+    this.signinService.getUseDetails(this.username).subscribe((res)=>{
+      window.localStorage.setItem( "user", JSON.stringify({"details": res.msg[0]}));
+      this.Router.navigate(['search-restaurants']);
+    })
   }
   sendToRestApiMethod(token: string): void {
     // subscribe

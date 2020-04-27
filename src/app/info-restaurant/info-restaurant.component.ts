@@ -34,7 +34,6 @@ export class InfoRestaurantComponent implements OnInit {
   zoom = 12
   center: google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
-    mapTypeId: 'hybrid',
     zoomControl: false,
     scrollwheel: false,
     disableDoubleClickZoom: true,
@@ -69,21 +68,23 @@ geocoder:any;
       };
       this._album.push(album);
     }
-    console.log(this._album)
 
-    navigator.geolocation.getCurrentPosition(position => {
-      this.center = {
-        lat: this.restaurantDetail.coordinates.latitude,
-        lng: this.restaurantDetail.coordinates.longitude, }
-        this.addMarker();
-    });
+    // navigator.geolocation.getCurrentPosition(position => {
+      
+    // });
+    this.restaurantDetail = JSON.parse(window.localStorage.getItem('data')).details;
+    this.center = {
+      lat: this.restaurantDetail.coordinates.latitude,
+      lng: this.restaurantDetail.coordinates.longitude, 
+    }
+      this.addMarker();
     
     this.geocoder = new google.maps.Geocoder;
   
   
 
   console.log(JSON.parse(window.localStorage.getItem('data')));
-    this.restaurantDetail = JSON.parse(window.localStorage.getItem('data')).details;
+    
      
 }
     
@@ -97,8 +98,8 @@ addToFav (){
   addMarker() {
     this.markers.push({
       position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+        lat: this.restaurantDetail.coordinates.latitude,
+        lng: this.restaurantDetail.coordinates.longitude,
       },
       label: {
         color: 'red',

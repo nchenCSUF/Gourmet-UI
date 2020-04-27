@@ -48,7 +48,7 @@ export class LeftoverComponent implements OnInit {
   ngOnInit() {
     this.getLeftOverDetails();
   }
-
+  
   getLeftOverDetails() {
     this.rListService.getApiLeftOverList().subscribe((res)=>{
       this.itemList = res.msg;

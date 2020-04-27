@@ -1,0 +1,25 @@
+<div class="parent">
+    <div class="child" *ngFor="let item of favDetails.businesses; let i= index"> 
+        <img class="card-img-top" style="height: 200px;display: block;" src="{{item.image_url}}" alt="Card image cap">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8 mt-2">
+                    <h3 class="card-title">{{item.name}}</h3>
+                </div>
+                <div class="col-4">
+                    <p class="card-text">
+                        <ng-template #fa let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                            </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]="item.rating" [starTemplate]="fa" [readonly]="true" [max]="5"></ngb-rating>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class=" " style="text-align: center;">
+            <button type="button" class="btn btn-pill btn-dark">Visit Restaurant</button>
+        </div>
+    </div>
+</div>
