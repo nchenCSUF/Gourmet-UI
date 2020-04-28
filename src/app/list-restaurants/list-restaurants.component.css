@@ -1,5 +1,12 @@
-.table-dark{
-    background-color: #253f5ab5
+.table-dark {
+    background-color: #253f5ab5;
+    color:white
+}
+.card{
+    background-color: #253f5ab5;
+    color:white;
+    align-items: center;
+    border:none;
 }
 
 .main-res-list{

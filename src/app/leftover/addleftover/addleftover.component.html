@@ -17,7 +17,7 @@
                     </label>
                 </div>
                 <div class="ml-3 mr-3 mb-5"> <input type="text" [(ngModel)]="qty" class="form-control" placeholder="serves how many people approximately" /> </div>
-                <div class="ml-3 mr-3 mb-5"> <dp-date-picker [(ngModel)]="selectedDate" [config]="datePickerConfig" class="form-control" placeholder="use the food best by"></dp-date-picker> </div> 
+                <div class="ml-3 mr-3 mb-5"> <dp-date-picker [(ngModel)]="selectedDate" [config]="datePickerConfig" class="form-control" placeholder="best by"></dp-date-picker> </div> 
                 <div class="ml-3 mr-3 mb-5"><input [(ngModel)]="comments" type="text" class="form-control" placeholder="comments, suggestions to consume food" /></div>
                 <div class="ml-3 mr-3 mb-5"><button class="btn btn-primary" (click)="addFoodItem()">Add Food item</button></div>
             </div>

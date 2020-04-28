@@ -61,16 +61,12 @@ export class ListRestaurantsComponent implements OnInit {
     temp.businesses.sort((a,b) => 
       Number(b["rating"] - a["rating"])
     )
-    console.log(temp)
     this.response = Object.assign({}, temp);
     this.ratingSort = true;
     this.disSort = false;
   }
   sortByDistance() {
-    let temp = this.response
-    temp.businesses.sort((a,b) => Number(a['distance'] - b['distance']));
-      console.log(temp)
-    this.response = Object.assign({}, temp);
+    this.response.businesses.sort((a,b) => Number(a['distance'] - b['distance']));
     this.ratingSort = false;
     this.disSort = true;
   }
