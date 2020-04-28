@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 import { FavoriteService } from './favorite.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { FavoriteService } from './favorite.service';
 })
 export class FavoriteComponent implements OnInit {
   favDetails: any;
-  constructor(private fService: FavoriteService) { }
+  constructor(private fService: FavoriteService, private router:Router) { }
 
   ngOnInit(): void {
     this.getLeftOverDetails();
@@ -21,6 +22,12 @@ export class FavoriteComponent implements OnInit {
     // this.fService.getFavoriteDetails(userId).subscribe((res)=>{
     //   this.favDetails = res.msg;
     // })
+  }
+
+  gotoRestaurantInfo(restaurant) {
+    console.log("**", restaurant);
+    window.localStorage.setItem( "data", JSON.stringify({"details": restaurant}));
+    this.router.navigate(['/restaurant-info']);
   }
 
 

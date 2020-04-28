@@ -12,4 +12,8 @@ export class ListRestaurantsService {
   getApiRestaurantList(lat: String, longi:String, searchText: String): Observable<any> {
     return this.http.get(environment.serverEndpoint + "/api/getrestaurantslist?searchValue=" + searchText + "&lat=" + lat + "&longi=" + longi);
   } 
+
+  getRestaurant(id) : Observable<any> {
+    return this.http.get(environment.serverEndpoint + "/api/getrestaurant?id=" + id);
+  }
 }

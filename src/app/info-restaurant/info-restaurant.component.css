@@ -1,0 +1,9 @@
+.card {
+    background-color: grey;
+    color: white;
+}
+
+.marker-label {
+    color: navy;
+    font-size: medium;
+}

@@ -45,7 +45,7 @@ export class ReviewsRestaurantComponent implements OnInit {
         text: this.reviewNew,
         rating: this.starNew,
         user: {
-          name: "Anonymous"
+          name: JSON.parse(window.localStorage.getItem("user")).details.firstName + " " +JSON.parse(window.localStorage.getItem("user")).details.lastName
         }
       }
     )

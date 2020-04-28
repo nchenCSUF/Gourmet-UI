@@ -10,6 +10,7 @@ import { LeftoverComponent } from './leftover/leftover.component'
 import { InfoRestaurantComponent } from './info-restaurant/info-restaurant.component'
 import { FavoriteComponent } from './favorite/favorite.component';
 import { AddleftoverComponent } from './leftover/addleftover/addleftover.component';
+import { ReviewsRestaurantComponent } from './info-restaurant/reviews-restaurant/reviews-restaurant.component';
 export const routes: Routes = [
   {
     path: '',
@@ -49,6 +50,11 @@ export const routes: Routes = [
       {
         path: 'add-left-over',
         component: AddleftoverComponent
+
+      },
+      {
+        path: 'reviews',
+        component: ReviewsRestaurantComponent
 
       }
     ]}

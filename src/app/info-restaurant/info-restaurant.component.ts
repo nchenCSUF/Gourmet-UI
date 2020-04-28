@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy  } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
 import { Lightbox } from 'ngx-lightbox';
+import { ListRestaurantsService } from './../list-restaurants/list-restaurants.service';
+import { Subscription } from 'rxjs';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
 declare const google: any;
 @Component({
   selector: 'app-info-restaurant',
@@ -10,22 +13,30 @@ declare const google: any;
   .star {
     position: relative;
     display: inline-block;
-    font-size: 3rem;
+    font-size: 2rem;
     color: #d3d3d3;
   }
   .full {
-    color: red;
+    color: skyblue;
   }
   .half {
     position: absolute;
     display: inline-block;
     overflow: hidden;
-    color: red;
-  }`]
+    color: skyblue;
+  }`],
+  providers: [
+    { provide: CarouselConfig, useValue: { interval: 1500, noPause: false } },
+  ]
 })
-export class InfoRestaurantComponent implements OnInit {
+export class InfoRestaurantComponent implements OnInit, OnDestroy {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
+
+  myInterval: number | false = 6000;
+  slides: any[] = [];
+  activeSlideIndex: number = 0;
+  noWrapSlides: boolean = false;
 
   _album:any = [];
   favorite: any = 0;;
@@ -41,10 +52,10 @@ export class InfoRestaurantComponent implements OnInit {
     minZoom: 8,
   }
   public restaurantDetail;
-  constructor(private _lightbox: Lightbox) {
+  constructor(private _lightbox: Lightbox, private service:ListRestaurantsService) {
     
   }
-
+  addToFav() {}
   open(index: number): void {
     // open lightbox
     this._lightbox.open(this._album, index);
@@ -56,8 +67,8 @@ export class InfoRestaurantComponent implements OnInit {
   }
 geocoder:any;
   ngOnInit() {
+    
     for (var i= 1; i <= 3; i++) {
-      
       const src = 'assets/img/img/img' + i + '.jpg';
       const caption = 'Image ' + i + ' picture' + i;
       const thumb = 'assets/img/img/img' + i + '.jpg';
@@ -68,32 +79,21 @@ geocoder:any;
       };
       this._album.push(album);
     }
-
-    // navigator.geolocation.getCurrentPosition(position => {
-      
-    // });
-    this.restaurantDetail = JSON.parse(window.localStorage.getItem('data')).details;
-    this.center = {
-      lat: this.restaurantDetail.coordinates.latitude,
-      lng: this.restaurantDetail.coordinates.longitude, 
-    }
-      this.addMarker();
-    
-    this.geocoder = new google.maps.Geocoder;
-  
-  
-
-  console.log(JSON.parse(window.localStorage.getItem('data')));
-    
-     
+    let id = JSON.parse(window.localStorage.getItem('data'))["details"].id
+    this.service.getRestaurant(id).subscribe((res) => {
+      this.restaurantDetail = res.msg;
+      this.center = {
+        lat: this.restaurantDetail.coordinates.latitude,
+        lng: this.restaurantDetail.coordinates.longitude, 
+      }
+        this.addMarker(); 
+      for (let i = 0; i < this.restaurantDetail.photos.length; i++) {
+        this.addSlide(this.restaurantDetail.photos[i]);
+      }
+    })
+        
 }
-    
-    
-addToFav (){
 
-}
-  
-  
 
   addMarker() {
     this.markers.push({
@@ -111,7 +111,25 @@ addToFav (){
   }
 
 
+  ngOnDestroy(): void {
+    this.myInterval = 0;
+    this.noWrapSlides = true;
+    this.myInterval = false;
+  }
 
+  addSlide(url): void {
+    setTimeout( () => {
+      const seed = Math.random().toString(36).slice(-6);
+      this.slides.push({
+        image: `https://picsum.photos/seed/${seed}/900/500`
+      });
+    }, 500);
+  }
+
+  removeSlide(index?: number): void {
+    const toRemove = index ? index : this.activeSlideIndex;
+    this.slides.splice(toRemove, 1);
+  }
   
 
 }

@@ -16,8 +16,8 @@ export const navItemsRes: INavData[] = [
     }
   },
   {
-    name: 'My Reviews',
-    url: '/fav',
+    name: 'Reviews',
+    url: '/reviews',
     icon: 'icon-task',
   },
 ];

@@ -1,5 +1,32 @@
 
-<div class="card">
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="card card-accent-info mb-5" >
+            <div class="card-header">Thank you for your contribution! Please add food details below</div>
+            <div class="card-body">
+                <div class="btn-group mb-5" data-toggle="buttons">
+                    <label class="btn btn-success active mr-3">
+                      <input type="radio" name="options" id="veg" autocomplete="off" checked> Vegetarian
+                    </label>
+                    <label class="btn btn-success mr-3">
+                      <input type="radio" name="options" id="vegan" autocomplete="off"> Vegan
+                    </label>
+                    <label class="btn btn-success">
+                      <input type="radio" name="options" id="nonveg" autocomplete="off"> Non Vegetarian
+                    </label>
+                </div>
+                <div class="ml-3 mr-3 mb-5"> <input type="text" [(ngModel)]="qty" class="form-control" placeholder="serves how many people approximately" /> </div>
+                <div class="ml-3 mr-3 mb-5"> <dp-date-picker [(ngModel)]="selectedDate" [config]="datePickerConfig" class="form-control" placeholder="use the food best by"></dp-date-picker> </div> 
+                <div class="ml-3 mr-3 mb-5"><input [(ngModel)]="comments" type="text" class="form-control" placeholder="comments, suggestions to consume food" /></div>
+                <div class="ml-3 mr-3 mb-5"><button class="btn btn-primary" (click)="addFoodItem()">Add Food item</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+<div class="card" *ngIf="leftOverDetails.length > 0"> 
     <table class="table">
         <thead>
             <tr>
@@ -14,7 +41,7 @@
                 <td>{{item.foodType}}</td>
                 <td>{{item.serves}} </td>
                 <td> 
-                    {{item.useBy}}
+                    {{formatDate(item.useBy)}}
                </td>
                 <td>
                     <label class="switch switch-primary">
@@ -26,30 +53,3 @@
         </tbody>
     </table>
 </div>
-
-
-
-
-Thank you for your contribution!
-
-<div>
-    Add Food details
-</div>
-<div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-secondary active">
-      <input type="radio" name="options" id="veg" autocomplete="off" checked> Vegetarian
-    </label>
-    <label class="btn btn-secondary">
-      <input type="radio" name="options" id="vegan" autocomplete="off"> Vegan
-    </label>
-    <label class="btn btn-secondary">
-      <input type="radio" name="options" id="nonveg" autocomplete="off"> Non Vegetarian
-    </label>
-  </div>
-
-  Qty: <input type="text" [(ngModel)]="qty" />
-  expires on <dp-date-picker [(ngModel)]="selectedDate" [config]="datePickerConfig"></dp-date-picker>  {{selectedDate}}
-  comments: <input [(ngModel)]="comments" type="text" />
-  <button (click)="addFoodItem()">Add Food item</button>
-
-

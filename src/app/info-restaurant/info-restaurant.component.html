@@ -1,37 +1,110 @@
-
-<img width="200" height="200" src="{{restaurantDetail.image_url}}" />
-<h1>{{restaurantDetail.name}}</h1>
-<h3>{{restaurantDetail.location.address1}}, {{restaurantDetail.location.city}} - {{restaurantDetail.location.state}}, {{restaurantDetail.location.zip_code}}</h3>
-<google-map  height="300px"
-width="300px"
-[zoom]="zoom"
-[center]="center"
-[options]="options">
- <map-marker
-    *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
-  >
-  </map-marker></google-map>
-  
-
-  <span *ngFor="let image of _album; let i=index">
-    <img width="100px" height="130px" [src]="image.thumb" (click)="open(i)" />
-  </span> 
-<div class="row">
-  <div class="col-1">Add to Favorites</div>
-   
-<div class="col-11">
-  <ng-template #f let-fill="fill">
-    <span class="star" [class.full]="fill === 100">
-      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-    </span>
-  </ng-template>
-  
-  <ngb-rating [(rate)]="favorite" [starTemplate]="f" [readonly]="false" [max]="1" (click)="addToFav()"></ngb-rating></div>
+<ng-template #f let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+  </span>
+</ng-template>
+<ng-template #ri let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+<div class="col-12" *ngIf="restaurantDetail.photos">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+              <div class="card-header-actions">
+            </div>
+          </div>
+          <div class="card-body">
+            <carousel [interval]="false">
+              <slide *ngFor="let item of restaurantDetail.photos">
+                <img src="{{item}}" alt="" style=" object-fit: cover;display: block; width: 100%;height: 300px;">
+              </slide>
+            </carousel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-7">
+    <div class="row">
+      <div class="col-8 mb-5"><h1 style="font-weight: bold;color: steelblue;">{{restaurantDetail.name}} (<span *ngIf="restaurantDetail.is_closed == false"> Open Now </span>
+        <span *ngIf="restaurantDetail.is_closed"> Closed </span>
+      ) </h1>
+      </div>
+      <div class="col-1">
+        <ngb-rating [(rate)]="favorite" [starTemplate]="f" [readonly]="false" [max]="1" (click)="addToFav()"></ngb-rating>
+      </div>
+      <div class="col-1"></div>  
+      <div class="col-2">         
+        <ngb-rating [(rate)]="restaurantDetail.rating" [starTemplate]="ri" [readonly]="true" [max]="5"></ngb-rating>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4" >
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+          <div class="card-header"><h4>Special Features!</h4></div>
+          <div class="card-body">
+            <h5 class="card-title" *ngFor="let item of restaurantDetail.categories">{{item.title}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-4" >
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+          <div class="card-header"><h4>Contact Details</h4></div>
+          <div class="card-body">
+            Phone: {{restaurantDetail.display_phone}}
+            <div class="mt-2">
+
+            
+            Address: {{restaurantDetail.location.address1}}, {{restaurantDetail.location.city}} - {{restaurantDetail.location.state}}, {{restaurantDetail.location.zip_code}}
+          </div>
+          </div>
+        </div>
+      </div>
+      <Div class="col-4">
+          <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header"><h4>Transactions</h4></div>
+            <div class="card-body" >
+              <h5 class="card-title" *ngFor="let item of restaurantDetail.transactions">{{item}}</h5>
+            </div>
+          </div>
+      </Div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card text-white bg-secondary mb-3">
+            <div class="card-header"><h4>Menu</h4></div>
+            <div class="card-body" >
+              <span *ngFor="let image of _album; let i=index">
+                <img width="150px" height="170px" [src]="image.thumb" (click)="open(i)" />
+              </span> 
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-5 card">
+    <google-map  height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+      <map-marker [ngClass]="{'marker-label': true}" *ngFor="let marker of markers" [position]="marker.position" [label]="restaurantDetail.name" [title]="marker.title" [options]="marker.options" > </map-marker>
+    </google-map>
+  </div>
+</div>
+
+  
+<div class="row"> 
+  <div class="col-8"></div>
+  <div class="col-4"></div>
+</div>
+
+
+  
   
 
   <app-reviews-restaurant [restaurantId]="restaurantDetail.id">

@@ -9,7 +9,7 @@ export class ReviewsRestaurantService {
 
   constructor(private http: HttpClient) { }
   getApiReviews(restaurantId: string): Observable<any> {
-    return this.http.get(environment.serverEndpoint + "/api/getreviews");
+    return this.http.get(environment.serverEndpoint + "/api/getreviews?id=" + restaurantId);
   }
 
 }

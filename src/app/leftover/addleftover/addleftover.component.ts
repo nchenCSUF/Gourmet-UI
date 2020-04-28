@@ -41,6 +41,10 @@ export class AddleftoverComponent implements OnInit {
       })
     }
 
+    formatDate(date){
+      return new Date(date).toDateString();
+    }
+
     deleteItem(id, useBy) {
       this.leftoverService.deleteFoodItem(id, useBy).subscribe((res)=>{
         // deleted

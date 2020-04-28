@@ -10,7 +10,9 @@
         </div>
     </div>
     <div class="col-3">
-        <button class="btn btn-primary" (click)="sortByRating()">Rating</button>
+        
+        <button class="btn" [ngClass]="{'btn-success': ratingSort,'btn-primary': !ratingSort }" (click)="sortByRating()">Rating</button>
+        <button class="btn" [ngClass]="{'btn-success': disSort,'btn-primary': !disSort }" (click)="sortByDistance()">Distance</button>
     </div>    
 </div>
 

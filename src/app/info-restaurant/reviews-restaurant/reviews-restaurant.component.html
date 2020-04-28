@@ -23,7 +23,7 @@
     <div *ngIf="!isEmpty(reviewsList)">
     <div *ngFor="let item of reviewsList.reviews">
         <div class="row">
-            <div class="col-12 alert alert-primary" role="alert">
+            <div class="col-12 card" role="alert">
                 <div class="h5 text-primary pt-3">{{item.user.name}}</div>
                 {{item.text}}
                 <ng-template #t let-fill="fill">

@@ -8,7 +8,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'ngbd-modal-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">{{restaurantDetail.name}}</h4>
+      <h4 class="modal-title">{{name}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -31,6 +31,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalContent {
   @Input() restaurantDetail;
+  @Input() name;
 
   constructor(public activeModal: NgbActiveModal) {
     console.log(this.restaurantDetail)
@@ -55,11 +56,16 @@ export class LeftoverComponent implements OnInit {
     })
   }
 
-  open() {
+  open(name) {
     const modalRef = this.modalService.open(NgbdModalContent);
     console.log(JSON.parse(window.localStorage.getItem('data')).details);
     modalRef.componentInstance.restaurantDetail = JSON.parse(window.localStorage.getItem('data')).details;
+    modalRef.componentInstance.name = name;
     modalRef.componentInstance.cdref.detectChanges();
+  }
+
+  formatDate(date){
+    return new Date(date).toDateString();
   }
 
   isEmpty(obj) {

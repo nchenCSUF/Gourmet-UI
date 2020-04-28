@@ -27,6 +27,8 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbRatingConfig]
 })
 export class ListRestaurantsComponent implements OnInit {
+  disSort: boolean = false;
+  ratingSort: boolean = false;
   public response: any;
   public searchText: String = "";
   constructor(private rListService: ListRestaurantsService, private router: Router, config: NgbRatingConfig) { 
@@ -48,9 +50,9 @@ export class ListRestaurantsComponent implements OnInit {
   searchRestaurants() {
     this.response = [];
     this.rListService.getApiRestaurantList(this.latitude, this.longitude, this.searchText).subscribe((res)=>{
-      let temp = res.msg;
-      temp.businesses.sort((a,b) => Number(a['distance'] - b['distance']));
-      this.response = temp;
+      
+      this.response = res.msg;
+      this.sortByDistance();
     })
   }
 
@@ -61,6 +63,16 @@ export class ListRestaurantsComponent implements OnInit {
     )
     console.log(temp)
     this.response = Object.assign({}, temp);
+    this.ratingSort = true;
+    this.disSort = false;
+  }
+  sortByDistance() {
+    let temp = this.response
+    temp.businesses.sort((a,b) => Number(a['distance'] - b['distance']));
+      console.log(temp)
+    this.response = Object.assign({}, temp);
+    this.ratingSort = false;
+    this.disSort = true;
   }
 
   calculateDistance(distance) {

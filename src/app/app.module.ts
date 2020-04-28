@@ -43,6 +43,7 @@ import { AppRoutingModule } from './app.routing';
 
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {NgbPaginationModule, NgbAlertModule, NgbRatingModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -69,6 +70,7 @@ import { RestaurantReviewComponent } from './info-restaurant/reviews-restaurant/
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    CarouselModule.forRoot(),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
